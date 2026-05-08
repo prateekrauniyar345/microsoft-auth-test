@@ -1,0 +1,157 @@
+# Frontend (React/Node) ==========================================
+client/node_modules/
+client/dist/
+client/.env.local
+client/.env.*.local
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+client/.vite/
+
+# Backend (Python/FastAPI) =======================================
+server/.venv/
+server/venv/
+server/env/
+server/.env
+server/.env.local
+server/.env.*.local
+server/__pycache__/
+server/**/__pycache__/
+server/*.py[cod]
+server/*$py.class
+server/*.so
+server/.Python
+server/build/
+server/develop-eggs/
+server/dist/
+server/downloads/
+server/eggs/
+server/.eggs/
+server/lib/
+server/lib64/
+server/parts/
+server/sdist/
+server/var/
+server/wheels/
+server/pip-wheel-metadata/
+server/share/python-wheels/
+server/*.egg-info/
+server/.installed.cfg
+server/*.egg
+server/MANIFEST
+server/.pytest_cache/
+server/.coverage
+server/.coverage.*
+server/.cache
+server/nosetests.xml
+server/coverage.xml
+server/*.cover
+server/*.py,cover
+server/.hypothesis/
+server/.mypy_cache/
+server/.dmypy.json
+server/dmypy.json
+server/.pyre/
+server/instance/
+server/.webassets-cache
+server/.scrapy
+server/docs/_build/
+server/target/
+server/.ipynb_checkpoints
+server/.pytype/
+server/.sqlc/
+server/alembic/versions/
+
+# IDE & Editor =====================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+.project
+.pydevproject
+.settings/
+*.jinja2~
+.vs/
+.vscode-test
+*.code-workspace
+
+# OS Files =========================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs =============================================================
+*.log
+*.logs
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary/Build Files ============================================
+*.tmp
+*.bak
+*.swp
+*.orig
+dist/
+build/
+.cache/
+temp/
+tmp/
+
+# Environment & Secrets ============================================
+.env
+.env.local
+.env.*.local
+.env.example (but commit this one!)
+
+# Database =========================================================
+*.db
+*.sqlite
+*.sqlite3
+*.sqlitedb
+*.dump
+
+# Testing =========================================================
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
+.tox/
+.hypothesis/
+
+# macOS Cleanup Script ==============================================
+.venv/
+__pycache__/
+
+# Project Specific =================================================
+client/.vite/
+server/migrations/
+output/
+results/
+
+
+
+
+# ignore the ./clean file
+clean.sh
+
+
+# ignore the ._ files created by macOS
+*._*
+._*
+
+
+# ignore the .DS_Store files created by macOS
+.DS_Store
+.DS_Store?

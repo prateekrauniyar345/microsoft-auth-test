@@ -1,0 +1,189 @@
+/**
+ * Main application styles
+ * 
+ * This file contains custom CSS styles that enhance the Bootstrap theme
+ * and provide app-specific styling for the Microsoft Auth Test application.
+ */
+
+/* App container styles */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area should grow to fill available space */
+main {
+  flex: 1;
+}
+
+/* Custom gradient backgrounds */
+.bg-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Navigation enhancements */
+.navbar-brand {
+  font-weight: 600;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Button enhancements */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Loading spinner custom colors */
+.spinner-border.text-primary {
+  color: #0d6efd !important;
+}
+
+/* Badge styles */
+.badge {
+  font-weight: 500;
+}
+
+/* Timeline styles for dashboard activities */
+.timeline .d-flex {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline .d-flex:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  top: 2rem;
+  width: 2px;
+  height: calc(100% - 1rem);
+  background-color: #e9ecef;
+}
+
+.timeline .flex-shrink-0 {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  padding: 2px;
+}
+
+/* Profile page enhancements */
+.profile-page .position-relative .badge {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Home page hero section */
+.home-page .lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Alert enhancements */
+.alert {
+  border: none;
+  border-radius: 8px;
+}
+
+.alert-info {
+  background-color: #e7f3ff;
+  color: #0c5460;
+}
+
+.alert-success {
+  background-color: #d1f2eb;
+  color: #0f5132;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Code/pre blocks styling */
+pre {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .display-6 {
+    font-size: 1.5rem;
+  }
+  
+  .timeline .d-flex {
+    padding-left: 1.5rem;
+  }
+  
+  .timeline .d-flex::after {
+    left: 0.45rem;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
+              border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Focus states for accessibility */
+.btn:focus,
+.nav-link:focus,
+.navbar-brand:focus {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .btn,
+  footer {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: none !important;
+  }
+}
