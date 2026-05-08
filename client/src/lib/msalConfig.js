@@ -87,12 +87,14 @@ export const msalConfig = {
  */
 export const loginRequest = {
     scopes: [
-        'User.Read', // Basic user profile information
-        'openid',    // OpenID Connect scope
-        'profile',   // User's profile information
-        'email'      // User's email address
+        import.meta.env.VITE_SERVERSIDE_SCOPE, // Custom scope for backend API access
+        "openid", 
+        "profile",
+        "email"
     ],
 };
+
+
 
 /**
  * Microsoft Graph API configuration
