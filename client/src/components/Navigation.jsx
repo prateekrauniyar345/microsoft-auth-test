@@ -74,7 +74,7 @@ function Navigation() {
             </Nav.Link>
             
             {/* Show authenticated navigation items */}
-            {isAuthenticated && (
+            {/* {isAuthenticated && (
               <>
                 <Nav.Link href="/dashboard">
                   <i className="bi bi-speedometer2 me-1"></i>
@@ -85,7 +85,7 @@ function Navigation() {
                   Profile
                 </Nav.Link>
               </>
-            )}
+            )} */}
           </Nav>
 
           {/* Right side navigation */}
@@ -111,10 +111,10 @@ function Navigation() {
                   
                   <NavDropdown.Divider />
                   
-                  <NavDropdown.Item href="/profile">
+                  {/* <NavDropdown.Item href="/profile">
                     <i className="bi bi-person-gear me-2"></i>
                     Profile Settings
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> */}
                   
                   <NavDropdown.Item href="/dashboard">
                     <i className="bi bi-speedometer2 me-2"></i>
