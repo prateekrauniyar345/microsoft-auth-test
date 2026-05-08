@@ -4,6 +4,10 @@ Configuration module for FastAPI application
 
 from pydantic_settings import BaseSettings
 from typing import Optional
+from dotenv import load_dotenv
+import os
+import sys
+load_dotenv()  # Load environment variables from .env file
 
 
 class Settings(BaseSettings):
@@ -24,7 +28,7 @@ class Settings(BaseSettings):
     DB_ECHO: bool = False  # Set to True to log SQL queries
     
     # CORS
-    CORS_ORIGINS: list = ["http://localhost:3000", "http://localhost:5173"]
+    CORS_ORIGINS: list = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:5173").split(",")
     CORS_ALLOW_CREDENTIALS: bool = True
     CORS_ALLOW_METHODS: list = ["*"]
     CORS_ALLOW_HEADERS: list = ["*"]
@@ -34,12 +38,20 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
-    # Microsoft Azure AD
-    AZURE_TENANT_ID: str = "23d82046-7e7d-4cf9-8efd-8012ec1d7a7c"
-    AZURE_CLIENT_ID: str = "4c9d1f93-e2a9-490d-af3a-0c02164dfa84"
-    AZURE_CLIENT_SECRET: str = ""
-    MICROSOFT_AUTHORITY_URL: str = f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
-    MICROSOFT_GRAPH_ENDPOINT: str = "https://graph.microsoft.com/v1.0"
+    # Microsoft Azure AD - Client Side (Frontend to Backend)
+    AZURE_CLIENTSIDE_TENANT_ID: str = os.getenv("AZURE_CLIENTSIDE_TENANT_ID")
+    AZURE_CLIENTSIDE_CLIENT_ID: str = os.getenv("AZURE_CLIENTSIDE_CLIENT_ID")
+    AZURE_CLIENTSIDE_CLIENT_SECRET_ID: Optional[str] = os.getenv("AZURE_CLIENTSIDE_CLIENT_SECRET_ID") or None
+    
+
+
+    
+    # Microsoft Azure AD - Server Side (Backend to Downstream Services/Graph API)
+    AZURE_SERVERSIDE_TENANT_ID: str = os.getenv("AZURE_SERVERSIDE_TENANT_ID")
+    AZURE_SERVERSIDE_CLIENT_ID: str = os.getenv("AZURE_SERVERSIDE_CLIENT_ID")
+    AZURE_SERVERSIDE_CLIENT_SECRET_VALUE: Optional[str] = os.getenv("AZURE_SERVERSIDE_CLIENT_SECRET_VALUE") or None
+    AZURE_SERVERSIDE_CLIENT_SECRET_ID: Optional[str] = os.getenv("AZURE_SERVERSIDE_CLIENT_SECRET_ID") or None
+
     
     class Config:
         env_file = ".env"

@@ -48,7 +48,7 @@ function Dashboard() {
           setError("Failed to exchange token with backend");
         });
     }
-  }, [isAuthenticated, backendTokenExchangeResponse, exchangeTokenAndSendToBackend]);
+  }, [isAuthenticated, backendTokenExchangeResponse]); // ← FIXED: Removed exchangeTokenAndSendToBackend
 
   /**
    * Effect to load user profile data when component mounts

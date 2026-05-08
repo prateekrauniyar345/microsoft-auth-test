@@ -60,9 +60,15 @@ export const useAuth = () =>{
             if (!accessToken) {
                 throw new Error("Failed to acquire access token");
             }
-            const response = await axiosClient.post("/api/get-client-side-access-token", {
-                access_token: accessToken  // Match the schema field name
-            });
+            const response =await axiosClient.post(
+                                "/api/get-client-side-access-token",
+                                {}, // body
+                                {
+                                    headers: {
+                                        Authorization: `Bearer ${accessToken}`,
+                                    },
+                                }
+                            );
             return response.data;
         }
         catch(error){
