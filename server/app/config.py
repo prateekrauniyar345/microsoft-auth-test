@@ -42,16 +42,17 @@ class Settings(BaseSettings):
     AZURE_CLIENTSIDE_TENANT_ID: str = os.getenv("AZURE_CLIENTSIDE_TENANT_ID")
     AZURE_CLIENTSIDE_CLIENT_ID: str = os.getenv("AZURE_CLIENTSIDE_CLIENT_ID")
     AZURE_CLIENTSIDE_CLIENT_SECRET_ID: Optional[str] = os.getenv("AZURE_CLIENTSIDE_CLIENT_SECRET_ID") or None
+    AZURE_CLIENTSIDE_CLIENT_SECRET_VALUE: Optional[str] = os.getenv("AZURE_CLIENTSIDE_CLIENT_SECRET_VALUE") or None
     
 
 
-    
+
     # Microsoft Azure AD - Server Side (Backend to Downstream Services/Graph API)
     AZURE_SERVERSIDE_TENANT_ID: str = os.getenv("AZURE_SERVERSIDE_TENANT_ID")
     AZURE_SERVERSIDE_CLIENT_ID: str = os.getenv("AZURE_SERVERSIDE_CLIENT_ID")
     AZURE_SERVERSIDE_CLIENT_SECRET_VALUE: Optional[str] = os.getenv("AZURE_SERVERSIDE_CLIENT_SECRET_VALUE") or None
     AZURE_SERVERSIDE_CLIENT_SECRET_ID: Optional[str] = os.getenv("AZURE_SERVERSIDE_CLIENT_SECRET_ID") or None
-
+    AZURE_SERVERSIDE_SCOPE: Optional[str] = os.getenv("AZURE_SERVERSIDE_SCOPE") or None
     
     class Config:
         env_file = ".env"
