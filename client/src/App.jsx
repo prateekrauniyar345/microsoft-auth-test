@@ -19,7 +19,6 @@ import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 // Import page components
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-// import Profile from './pages/Profile';
 import BackendPage from './pages/BackendPage';
 
 // Import layout components
@@ -155,15 +154,6 @@ function App() {
                   </ProtectedRoute>
                 } 
               />
-              
-              {/* <Route 
-                path="/profile" 
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                } 
-              /> */}
 
 
               {/* Backend route */}
