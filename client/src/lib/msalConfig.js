@@ -87,13 +87,21 @@ export const msalConfig = {
  */
 export const loginRequest = {
     scopes: [
-        import.meta.env.VITE_SERVERSIDE_SCOPE, // Custom scope for backend API access
+        import.meta.env.VITE_SERVERSIDE_SCOPE, // Your Backend API scope
         "openid", 
-        "profile",
-        "email"
+        "profile", 
+        "email",
+        "offline_access"
     ],
+    // This forces Microsoft to show you the "Permissions Requested" screen
+    prompt: "consent", 
+    // This tells Microsoft that the Backend ALSO needs these Graph permissions
+    extraScopesToConsent: [
+        "https://graph.microsoft.com/User.Read",
+        "https://graph.microsoft.com/Files.Read",
+        "https://graph.microsoft.com/Files.ReadWrite"
+    ]
 };
-
 
 
 /**

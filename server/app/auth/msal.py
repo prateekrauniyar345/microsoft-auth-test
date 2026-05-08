@@ -96,4 +96,9 @@ def get_current_user_from_token(authorization: str = Header(None)):
     token = authorization.replace("Bearer ", "")
     logger.debug("Received bearer token prefix=%s...", token[:30])
 
-    return validate_access_token(token)
+    user_payload = validate_access_token(token)
+
+    return {
+        "token": token,
+        "user": user_payload,
+    }

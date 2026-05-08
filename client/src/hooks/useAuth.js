@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback, useMemo } from "react";    
+import { useCallback, useMemo } from "react";
 import { useMsal, useIsAuthenticated } from "@azure/msal-react";
-import { loginRequest, graphConfig } from "../lib/msalConfig";
+import { loginRequest } from "../lib/msalConfig";
 import axiosClient from "../lib/axiosClient";
 
 
@@ -77,6 +77,30 @@ export const useAuth = () =>{
         }
     }, [getAccessToken]);
 
+    const fetchMeFromBackend = useCallback(async () => {
+        try {
+            const accessToken = await getAccessToken();
+            if (!accessToken) {
+                throw new Error("Failed to acquire access token");
+            }
+
+            const response = await axiosClient.get(
+                "/api/me",
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+            );
+
+            return response.data;
+        }
+        catch(error){
+            console.error("Error fetching /api/me from backend:", error);
+            throw error;
+        }
+    }, [getAccessToken]);
+
 
     return useMemo(() => ({
         isAuthenticated, 
@@ -89,7 +113,8 @@ export const useAuth = () =>{
         logout, 
         getAccessToken,
         exchangeTokenAndSendToBackend,
-    }), [login, logout, isAuthenticated, activeAccount, instance, inProgress, accounts, canInteract]);
+        fetchMeFromBackend,
+    }), [login, logout, isAuthenticated, activeAccount, instance, inProgress, accounts, canInteract, getAccessToken, exchangeTokenAndSendToBackend, fetchMeFromBackend]);
 
 }
 

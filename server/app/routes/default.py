@@ -74,6 +74,5 @@ async def get_info():
             "version": settings.APP_VERSION,
             "debug": settings.DEBUG,
             "database_configured": bool(settings.DATABASE_URL),
-            "azure_configured": bool(settings.AZURE_CLIENT_ID)
         }
     )

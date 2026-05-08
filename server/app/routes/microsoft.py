@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Header, Depends
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 from typing import Optional
 from app.auth.msal import get_current_user_from_token
@@ -9,29 +9,27 @@ router = APIRouter(prefix="/api", tags=["Microsoft Authentication"])
 
 class AccessTokenResponse(BaseModel):
     """
-    Response model for client-side access token
+    Response model for validated client-side access token
     """
     success: bool = Field(..., description="Indicates if the request was successful")
-    access_token: str = Field(..., description="Backend access token for downstream services")
     message: Optional[str] = Field(default=None, description="Optional message providing additional information")
     user: Optional[dict] = Field(default=None, description="Information about the authenticated user")
 
 
 @router.post("/get-client-side-access-token", response_model=AccessTokenResponse)
 async def exchange_token(
-    authorization: Optional[str] = Header(None),
-    current_user: dict = Depends(get_current_user_from_token)
+    auth_data: dict = Depends(get_current_user_from_token)
     ) -> AccessTokenResponse:
     """
-    Exchange frontend token for backend token (OBO flow)
+    Validate the frontend access token before OBO exchange.
     
     Frontend sends token in Authorization header: "Bearer <token>"
-    Backend exchanges it for a downstream service token
+    Backend validates it and keeps the raw token server-side for later OBO exchange.
     """
+    current_user = auth_data["user"]
     
     return AccessTokenResponse(
         success=True,
-        access_token=authorization[:20] + "......",
         message="Token validated successfully",
         user={
             "name": current_user.get("name"),

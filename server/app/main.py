@@ -9,7 +9,7 @@ import logging
 from contextlib import asynccontextmanager
 
 from app.config import settings
-from app.routes import default, microsoft
+from app.routes import auth, default, microsoft
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -72,6 +72,7 @@ def create_app() -> FastAPI:
     # Include route modules
     app.include_router(default.router)
     app.include_router(microsoft.router)
+    app.include_router(auth.router)
     # Root endpoint
     @app.get("/")
     async def root():
