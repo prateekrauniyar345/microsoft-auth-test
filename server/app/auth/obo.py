@@ -7,8 +7,8 @@ from app.config import settings
 
 logger = logging.getLogger(__name__)
 
-GRAPH_SCOPE = "https://graph.microsoft.com/User.Read"
-
+# GRAPH_SCOPE = "https://graph.microsoft.com/User.Read"
+GRAPH_SCOPE = "https://graph.microsoft.com/.default"
 
 def _resolve_obo_tenant_id(user_claims: dict | None = None) -> str:
     if user_claims and user_claims.get("tid"):

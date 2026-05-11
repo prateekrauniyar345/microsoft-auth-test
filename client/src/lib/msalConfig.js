@@ -87,20 +87,21 @@ export const msalConfig = {
  */
 export const loginRequest = {
     scopes: [
-        import.meta.env.VITE_SERVERSIDE_SCOPE, // Your Backend API scope
-        "openid", 
-        "profile", 
+        import.meta.env.VITE_SERVERSIDE_SCOPE, // Backend API scope (api://.../access_as_user)
+        "openid",
+        "profile",
         "email",
         "offline_access"
     ],
-    // This forces Microsoft to show you the "Permissions Requested" screen
-    prompt: "consent", 
-    // This tells Microsoft that the Backend ALSO needs these Graph permissions
+    // Ask user to consent to Graph scopes during login without including them in the
+    // access token (which would cause AADSTS70011 invalid_scope for mixing resources).
+    // The backend uses these pre-consented Graph scopes via the OBO flow.
     extraScopesToConsent: [
-        "https://graph.microsoft.com/User.Read",
-        "https://graph.microsoft.com/Files.Read",
-        "https://graph.microsoft.com/Files.ReadWrite"
-    ]
+        "https://graph.microsoft.com/User.Read"
+    ],
+    // Force consent prompt so user sees all scopes including the Graph ones above.
+    // Remove this after initial consent is established.
+    prompt: "consent",
 };
 
 
@@ -118,6 +119,11 @@ export const graphConfig = {
  * between applications by providing a "login_hint" property.
  * This is useful for refreshing tokens silently in the background.
  */
+// export const silentRequest = {
+//     scopes: ['openid', 'profile', 'User.Read'],
+// };
 export const silentRequest = {
-    scopes: ['openid', 'profile', 'User.Read'],
+    scopes: [
+        import.meta.env.VITE_SERVERSIDE_SCOPE
+    ],
 };

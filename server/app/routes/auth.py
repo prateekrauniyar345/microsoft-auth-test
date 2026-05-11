@@ -34,10 +34,14 @@ async def test_obo(auth_data: dict = Depends(get_current_user_from_token)):
 @router.get("/me")
 async def get_me(auth_data: dict = Depends(get_current_user_from_token)):
     frontend_token = auth_data["token"]
+    print("frontend token is : ", frontend_token)
     user = auth_data["user"]
+    print("user info is : ", user)
 
     graph_token_response = exchange_token_on_behalf_of(frontend_token, user)
+    print("Graph token response is : ", graph_token_response)
     graph_access_token = graph_token_response.get("access_token")
+    print("Graph access token:", graph_access_token)
 
     if not graph_access_token:
         raise HTTPException(status_code=502, detail="Microsoft Graph access token missing from OBO response")
@@ -47,6 +51,8 @@ async def get_me(auth_data: dict = Depends(get_current_user_from_token)):
         headers={"Authorization": f"Bearer {graph_access_token}"},
         timeout=15,
     )
+    print("graph response is : ", graph_response)
+    print("Graph API response status:", graph_response.status_code)
 
     if graph_response.status_code != 200:
         try:
